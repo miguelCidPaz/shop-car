@@ -8,6 +8,9 @@ class Product extends Component {
     }
     takeProduct = () => {
         this.props.take(this.state)
+        this.setState(prevState => ({
+            amount: 1
+        }))
     }
     render() {
         return (
@@ -16,6 +19,7 @@ class Product extends Component {
                 <div className="row">
                     <p>{this.state.name}</p>
                     <p>{this.state.price}</p>
+                    <h1>{this.state.amount}</h1>
                 </div>
                 <button onClick={this.takeProduct}>Comprar</button>
             </div>
