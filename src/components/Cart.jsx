@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Shopping from './Shopping'
+import '../CSS/styles.css'
 
 class Cart extends Component {
     constructor(props) {
@@ -19,16 +20,20 @@ class Cart extends Component {
     }
 
     render() {
+        let amount = 0
+        this.props.content.map(product => amount = amount + product.amount)
         return (
-            <>
-                <div className='button' onClick={this.openCart}>CART</div>
-                {
-                    this.state.inView ?
-                        this.props.content.map((product, index) => {
-                            return <Shopping key={index} product={product} />
-                        }) : null
-                }
-            </>
+            <div className='button'>
+                <div className='title' onClick={this.openCart}><div className="amount">{amount > 9 ? '9+' : amount}</div>CART</div>
+                <div className="cart">
+                    {
+                        this.state.inView ?
+                            this.props.content.map((product, index) => {
+                                return <Shopping key={index} product={product} />
+                            }) : null
+                    }
+                </div>
+            </div>
         )
     }
 }

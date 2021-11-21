@@ -1,19 +1,20 @@
 import React, { Component } from 'react'
 import Cart from './components/Cart';
 import Product from './components/Product'
+import './CSS/styles.css'
 
 class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
-            shopping: []
+            shopping: [],
+            inView: false
         }
     }
 
     take = (product) => {
         let cond = true;
-        const shoppingCart = this.state.shopping
+        const shoppingCart = [...this.state.shopping]
 
         for (let food of shoppingCart) {
             if (food.name === product.name) {
@@ -28,23 +29,25 @@ class App extends Component {
 
         if (cond) {
             this.setState(prevState => ({
-                shopping: [prevState, product]
+                shopping: [...shoppingCart, product]
             }))
         }
     }
 
     render() {
         return (
-            <>
+            <div className='found'>
                 <div className='row'>
                     <h1>SHOP</h1>
                     <Cart content={this.state.shopping} />
                 </div>
                 <div className='all'><h1>Tienda</h1></div>
-                {this.props.stock.map((product, index) => {
-                    return <Product key={index} content={product} take={this.take} />
-                })}
-            </>
+                <div className='stock'>
+                    {this.props.stock.map((product, index) => {
+                        return <Product key={index} content={product} take={this.take} />
+                    })}
+                </div>
+            </div>
         )
     }
 }

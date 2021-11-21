@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 class Shopping extends Component {
     render() {
         return (
-            <div>
-                <img src={this.props.product.photo} alt="" /><p>{this.props.product.name}</p><h1>{this.props.product.amount}</h1>
+            <div className='cart-product'>
+                <img src={this.props.product.photo} alt="" /><div className="row"><p>{this.props.product.name}</p><p>{this.props.product.amount}</p></div>
             </div>
         )
     }
